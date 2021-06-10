@@ -1,0 +1,15 @@
+# Default config example
+
+refresh_interval = "15s"                # Interval at which the exporter gets metrics from the daemon
+block_spans = "30,180,720"              # Block spans for which blocks' metrics are exported
+
+[server]
+host = "[::]:8080"                      # Socket address to be used by the exporter
+tls_key_path = ""                       # (TLS mode) Path to server's private key in PEM format
+tls_cert_path = ""                      # (TLS mode) Path to server's certificate in PEM format
+
+[monerod]
+base_url = "http://localhost:18081"     # Monero daemon RPC URL
+tls_cert_path = ""                      # Path to a custom certficate which will be trusted when accessing the daemon over HTTPS
+skip_tls_verification = false           # Do not verify the certificate when accessing the daemon over HTTPS
+timeout = "1s"                          # Timeout of the requests to the daemon
