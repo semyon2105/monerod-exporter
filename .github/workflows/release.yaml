@@ -1,0 +1,37 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - v*
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Build
+        run: |
+          set -ex
+
+          image=semyon2105/monerod-exporter:${GITHUB_REF#refs/tags/v}
+
+          mkdir artifacts
+
+          cargo build --release
+          cp target/release/monerod-exporter artifacts/
+          chmod +x artifacts/monerod-exporter
+
+          docker build -t $image .
+          docker save -o artifacts/image.tar.gz $image
+
+      - name: Create release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: artifacts/*
+          token: ${{ secrets.GITHUB_TOKEN }}
