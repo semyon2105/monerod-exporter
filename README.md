@@ -1,4 +1,4 @@
-# monerod-exporter &nbsp; [![Dashboards](https://img.shields.io/badge/-dashboards-blue.svg?logo=grafana)](https://monero.semyon.dev)
+# monerod-exporter
 
 Exports metrics and stats from a Monero daemon instance in Prometheus exposition format.
 
@@ -32,5 +32,3 @@ See [config.toml](./config.toml) for all available settings.
 ## Dashboards
 
 Pre-made Grafana v7.5+ [dashboards](./dashboards) that are set up to work with a Prometheus datasource. When importing the network metrics dashboard, set the `first_timestamp` variable to the timestamp of the first scrape.
-
-Check out live dashboards at https://monero.semyon.dev
